@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  db:
+    build: ./docker/mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      TZ: ${TZ}
+    ports:
+      - 3306:3306
+    volumes:
+      - ${DATA}:/var/lib/mysql
+      - ${IMPORT}:/var/lib/mysql-files/import
+      - ${EXPORT}:/var/lib/mysql-files/export
+
+volumes:
+  db-store:
